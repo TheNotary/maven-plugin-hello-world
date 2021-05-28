@@ -11,56 +11,47 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
 
 /**
  * Goal which touches a timestamp file.
  */
-@Mojo( name = "touch", defaultPhase = LifecyclePhase.PROCESS_SOURCES )
+@Mojo( name = "deploy", defaultPhase = LifecyclePhase.PROCESS_SOURCES )
 public class MyMojo
-    extends AbstractMojo
-{
+    extends AbstractMojo {
     /**
      * Location of the file.
      */
     @Parameter( defaultValue = "${project.build.directory}", property = "outputDir", required = true )
     private File outputDirectory;
 
-    public void execute()
-        throws MojoExecutionException
-    {
-        File f = outputDirectory;
+    public void execute() throws MojoExecutionException {
+        getLog().info( "Using latest plugin 1" );
 
-        if ( !f.exists() )
-        {
-            f.mkdirs();
-        }
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command("git", "status");
+            Process process = processBuilder.start();
 
-        File touch = new File( f, "touch.txt" );
-
-        FileWriter w = null;
-        try
-        {
-            w = new FileWriter( touch );
-
-            w.write( "touch.txt" );
-        }
-        catch ( IOException e )
-        {
-            throw new MojoExecutionException( "Error creating file " + touch, e );
-        }
-        finally
-        {
-            if ( w != null )
-            {
-                try
-                {
-                    w.close();
-                }
-                catch ( IOException e )
-                {
-                    // ignore
-                }
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                getLog().info(s);
             }
+
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            while ((s = stdError.readLine()) != null) {
+                getLog().info(s);
+            }
+
+            int exitCode = process.waitFor();
         }
+        catch (Exception e) {
+            getLog().info( "shell command failed" );
+        }
+
     }
 }
