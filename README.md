@@ -22,6 +22,14 @@ mvn install
 
 Then add it to the plugins section of a consumer project and build (e.g. `~/dev/tmp/java-maven-demo`).
 
+```
+<plugin>
+  <groupId>sample.plugin</groupId>
+  <artifactId>hello-world-maven-plugin</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</plugin>
+```
+
 Then call the plugin on the command line from that project.
 
 ```
