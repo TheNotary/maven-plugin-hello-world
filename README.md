@@ -25,6 +25,6 @@ Then add it to the plugins section of a consumer project and build (e.g. `~/dev/
 Then call the plugin on the command line from that project.
 
 ```
-mvn hello-world:touch
+mvn hello-world:deploy
 ```
 

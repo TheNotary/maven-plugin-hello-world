@@ -15,7 +15,7 @@ public class MyMojoTest
     public MojoRule rule = new MojoRule()
     {
         @Override
-        protected void before() throws Throwable 
+        protected void before() throws Throwable
         {
         }
 
@@ -36,16 +36,9 @@ public class MyMojoTest
         assertNotNull( pom );
         assertTrue( pom.exists() );
 
-        MyMojo myMojo = ( MyMojo ) rule.lookupConfiguredMojo( pom, "touch" );
+        MyMojo myMojo = ( MyMojo ) rule.lookupConfiguredMojo( pom, "deploy" );
         assertNotNull( myMojo );
         myMojo.execute();
-
-        File outputDirectory = ( File ) rule.getVariableValueFromObject( myMojo, "outputDirectory" );
-        assertNotNull( outputDirectory );
-        assertTrue( outputDirectory.exists() );
-
-        File touch = new File( outputDirectory, "touch.txt" );
-        assertTrue( touch.exists() );
 
     }
 
@@ -58,4 +51,3 @@ public class MyMojoTest
     }
 
 }
-
