@@ -27,6 +27,18 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.gradle</groupId>
+      <artifactId>gradle-plugins</artifactId>
+      <version>5.6</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+
+
+
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
@@ -50,7 +62,7 @@
       <artifactId>maven-compat</artifactId>
       <version>${maven.version}</version>
       <scope>test</scope>
-    </dependency> 
+    </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
@@ -70,6 +82,20 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <repositories>
+		<repository>
+			<id>gradle</id>
+			<url>https://repo.gradle.org/gradle/libs-releases-local</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
