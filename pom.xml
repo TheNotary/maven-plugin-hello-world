@@ -21,13 +21,14 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <maven.version>3.3.9</maven.version>
   </properties>
 
   <dependencies>
 
+    <!-- https://repo.gradle.org/gradle/libs-releases-local/org/gradle/gradle-plugins/5.6.4/gradle-plugins-5.6.4.jar -->
     <dependency>
       <groupId>org.gradle</groupId>
       <artifactId>gradle-plugins</artifactId>
@@ -35,6 +36,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <!--  https://repo.gradle.org/gradle/libs-releases-local/org/gradle/gradle-base-services-groovy/4.2.1/gradle-base-services-groovy-4.2.1.jar  -->
+    <dependency>
+      <groupId>org.gradle</groupId>
+      <artifactId>gradle-base-services-groovy</artifactId>
+      <version>4.2.1</version>
+      <scope>provided</scope>
+    </dependency>
 
 
 
